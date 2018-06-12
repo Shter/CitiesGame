@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    let list = ["ahmedabad", "damascus", "delhi", "izmir", "innsbruck", "kawasaki", "karachi",
+        "islamabad", "dalian", "nanjing", "glasgow", "wuhan", "naples", "sydney", "yangon", "rome",
+        "yerevan", "esfahan", "eilat", "tabriz", "zibo", "oslo", "odessa", "anshan", "adana"],
+
+
+
+
+    oldList = [],
+
+    firstArrSize = () => {
+        firstArrSize = list.length;
+        player(firstArrSize)
+    },
+
+    player = (firstArrSize) => {
+        if (firstArrSize == list.length) {
+            playerWord = (prompt('Назовите Ваш первый город')).toLowerCase();
+            if(list.indexOf(playerWord) == -1){
+                alert('Нет такого города');
+                player();
+            }
+            deleteCity(playerWord, bot);
+        } else {
+            playerWord = (prompt('Назовите Ваш город')).toLowerCase();
+            if(list.indexOf(playerWord) == -1){
+                alert('Нет такого города');
+                player();
+            }
+            for (i = 0; i < oldList.length; i++){
+                if(oldList[i] == playerWord){
+                    alert("Такой город уже был");
+                    player();
+                }
+            }
+            deleteCity(playerWord, bot);
+        }
+    },
+
+    deleteCity = (answer, func) => {
+
+        for (i = 0; i < list.length; i++) {
+            tempCity = list[i];
+            if (tempCity == answer) {
+                oldList.push([list.splice(i, 1)].join());
+                return func();
+            }
+        }
+    },
+
+    bot = () => {
+        lastChar = playerWord.charAt(playerWord.length - 1);
+        i = 0;
+        firstChar = '';
+        while(firstChar !== lastChar || i == list.length){
+            if(!list[i]) break;
+            firstChar = list[i].charAt(0);
+            i++;
+        };
+         if(firstChar == lastChar){
+            tempAnswer = list[i-1];
+            alert(list[i-1])
+            deleteCity(tempAnswer, player);
+        }else{
+            alert('You are winner!');
+        }
+    }
+
+
+    firstArrSize();
+
+
+
+
+    //console.log();
+
+
+
+
+
+    /* var modifiedNames = passengers.map(function(arrayCell){
+         return passengers[arrayCell]*/
+
+
+
+
+
+
+
+    /*var masiv = [
+        {name: "Fred", likes: 12},
+        {name: "Fred1", likes: 9},
+        {name: "Fred2", likes: 34},
+        {name: "Fred3", likes: 15},
+        {name: "Fred4", likes: 21},
+    ]
+
+    var topUser = masiv.reduce(function(topUser, currentUser){
+        if(topUser.likes > currentUser.likes){
+            return topUser;
+        }
+        return currentUser;
+
+
+    });
+
+    console.log(topUser);*/
+
+
+
+
+
+
+/*var average = [1, 3, 12, 34, 12, 34, 45];
+var n=0;
+
+average.forEach(function (i)
+{
+    n = n + i;
+    console.log(n);
+
+
+})
+
+n = n / average.length;
+console.log(n)*/
+
+
+
+</script>
+</body>
+</html>
